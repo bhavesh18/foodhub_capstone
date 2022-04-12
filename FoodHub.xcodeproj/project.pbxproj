@@ -1,0 +1,737 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1B15977325FCBBD300DEC269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B15977225FCBBD300DEC269 /* AppDelegate.swift */; };
+		1B15977525FCBBD300DEC269 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B15977425FCBBD300DEC269 /* SceneDelegate.swift */; };
+		1B15977725FCBBD300DEC269 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B15977625FCBBD300DEC269 /* HomeViewController.swift */; };
+		1B15977A25FCBBD300DEC269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B15977825FCBBD300DEC269 /* Main.storyboard */; };
+		1B15977C25FCBBD400DEC269 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B15977B25FCBBD400DEC269 /* Assets.xcassets */; };
+		1B15977F25FCBBD400DEC269 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B15977D25FCBBD400DEC269 /* LaunchScreen.storyboard */; };
+		1B15978A25FCBBD400DEC269 /* FoodHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B15978925FCBBD400DEC269 /* FoodHubTests.swift */; };
+		1B15979525FCBBD400DEC269 /* FoodHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B15979425FCBBD400DEC269 /* FoodHubUITests.swift */; };
+		1B1597AA25FCD26300DEC269 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1597A925FCD26300DEC269 /* LoginViewController.swift */; };
+		1B1597B025FCD9DC00DEC269 /* MyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1597AF25FCD9DC00DEC269 /* MyExtensions.swift */; };
+		1B2C698326033EAA00F6B40F /* OrderHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2C698226033EAA00F6B40F /* OrderHistoryViewController.swift */; };
+		1B2C698826033F6800F6B40F /* OrderHistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2C698726033F6800F6B40F /* OrderHistoryData.swift */; };
+		1B2C698D2603433E00F6B40F /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2C698C2603433E00F6B40F /* CartCell.swift */; };
+		1B2C699226034CCD00F6B40F /* OrderHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2C699126034CCD00F6B40F /* OrderHistoryCell.swift */; };
+		1B3FE2A426105F0D00ED7E58 /* RestaurantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3FE2A326105F0D00ED7E58 /* RestaurantData.swift */; };
+		1B3FE2A92610631600ED7E58 /* FoodListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3FE2A82610631600ED7E58 /* FoodListViewController.swift */; };
+		1B3FE2AE261063EF00ED7E58 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3FE2AD261063EF00ED7E58 /* RestaurantCell.swift */; };
+		1B9E766225FE0DC4006E1E85 /* CartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9E766125FE0DC4006E1E85 /* CartData.swift */; };
+		1B9E766725FE0DDD006E1E85 /* LocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9E766625FE0DDD006E1E85 /* LocalData.swift */; };
+		1B9E766C25FE0E26006E1E85 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9E766B25FE0E26006E1E85 /* UserData.swift */; };
+		1B9E767425FE1DDD006E1E85 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9E767325FE1DDD006E1E85 /* SessionManager.swift */; };
+		1B9E767E25FE686A006E1E85 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1B9E767D25FE686A006E1E85 /* IQKeyboardManagerSwift */; };
+		1BAEC4832609DF1A007BFB4C /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAEC4822609DF1A007BFB4C /* PaymentViewController.swift */; };
+		1BD1A04525FD01160025C866 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD1A04425FD01160025C866 /* FoodCell.swift */; };
+		1BD1A04E25FD02020025C866 /* FoodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD1A04D25FD02020025C866 /* FoodData.swift */; };
+		1BD1A05325FD13A10025C866 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD1A05225FD13A10025C866 /* ProfileViewController.swift */; };
+		1BD1A05825FD13A90025C866 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD1A05725FD13A90025C866 /* CartViewController.swift */; };
+		1BD1A05D25FD15E80025C866 /* FoodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD1A05C25FD15E80025C866 /* FoodDetailViewController.swift */; };
+		1BD1A06225FD2E720025C866 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD1A06125FD2E720025C866 /* Constants.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1B15978625FCBBD400DEC269 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1B15976725FCBBD300DEC269 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B15976E25FCBBD300DEC269;
+			remoteInfo = FoodHub;
+		};
+		1B15979125FCBBD400DEC269 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1B15976725FCBBD300DEC269 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B15976E25FCBBD300DEC269;
+			remoteInfo = FoodHub;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1B15976F25FCBBD300DEC269 /* FoodHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B15977225FCBBD300DEC269 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1B15977425FCBBD300DEC269 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		1B15977625FCBBD300DEC269 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		1B15977925FCBBD300DEC269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1B15977B25FCBBD400DEC269 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1B15977E25FCBBD400DEC269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1B15978025FCBBD400DEC269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B15978525FCBBD400DEC269 /* FoodHubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodHubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B15978925FCBBD400DEC269 /* FoodHubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodHubTests.swift; sourceTree = "<group>"; };
+		1B15978B25FCBBD400DEC269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B15979025FCBBD400DEC269 /* FoodHubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodHubUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B15979425FCBBD400DEC269 /* FoodHubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodHubUITests.swift; sourceTree = "<group>"; };
+		1B15979625FCBBD400DEC269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B1597A925FCD26300DEC269 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1B1597AF25FCD9DC00DEC269 /* MyExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExtensions.swift; sourceTree = "<group>"; };
+		1B2C698226033EAA00F6B40F /* OrderHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryViewController.swift; sourceTree = "<group>"; };
+		1B2C698726033F6800F6B40F /* OrderHistoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryData.swift; sourceTree = "<group>"; };
+		1B2C698C2603433E00F6B40F /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
+		1B2C699126034CCD00F6B40F /* OrderHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryCell.swift; sourceTree = "<group>"; };
+		1B3FE2A326105F0D00ED7E58 /* RestaurantData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantData.swift; sourceTree = "<group>"; };
+		1B3FE2A82610631600ED7E58 /* FoodListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListViewController.swift; sourceTree = "<group>"; };
+		1B3FE2AD261063EF00ED7E58 /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
+		1B9E766125FE0DC4006E1E85 /* CartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartData.swift; sourceTree = "<group>"; };
+		1B9E766625FE0DDD006E1E85 /* LocalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalData.swift; sourceTree = "<group>"; };
+		1B9E766B25FE0E26006E1E85 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		1B9E767325FE1DDD006E1E85 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		1BAEC4822609DF1A007BFB4C /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		1BD1A04425FD01160025C866 /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
+		1BD1A04D25FD02020025C866 /* FoodData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodData.swift; sourceTree = "<group>"; };
+		1BD1A05225FD13A10025C866 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1BD1A05725FD13A90025C866 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		1BD1A05C25FD15E80025C866 /* FoodDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailViewController.swift; sourceTree = "<group>"; };
+		1BD1A06125FD2E720025C866 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1B15976C25FCBBD300DEC269 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B9E767E25FE686A006E1E85 /* IQKeyboardManagerSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B15978225FCBBD400DEC269 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B15978D25FCBBD400DEC269 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1B15976625FCBBD300DEC269 = {
+			isa = PBXGroup;
+			children = (
+				1B15977125FCBBD300DEC269 /* FoodHub */,
+				1B15978825FCBBD400DEC269 /* FoodHubTests */,
+				1B15979325FCBBD400DEC269 /* FoodHubUITests */,
+				1B15977025FCBBD300DEC269 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1B15977025FCBBD300DEC269 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1B15976F25FCBBD300DEC269 /* FoodHub.app */,
+				1B15978525FCBBD400DEC269 /* FoodHubTests.xctest */,
+				1B15979025FCBBD400DEC269 /* FoodHubUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1B15977125FCBBD300DEC269 /* FoodHub */ = {
+			isa = PBXGroup;
+			children = (
+				1BD1A04925FD01F50025C866 /* Models */,
+				1BD1A04025FCFEB70025C866 /* Cells */,
+				1B1597AE25FCD9C500DEC269 /* Helpers */,
+				1B1597A825FCD24500DEC269 /* ViewControllers */,
+				1B15977225FCBBD300DEC269 /* AppDelegate.swift */,
+				1B15977425FCBBD300DEC269 /* SceneDelegate.swift */,
+				1B15977825FCBBD300DEC269 /* Main.storyboard */,
+				1B15977B25FCBBD400DEC269 /* Assets.xcassets */,
+				1B15977D25FCBBD400DEC269 /* LaunchScreen.storyboard */,
+				1B15978025FCBBD400DEC269 /* Info.plist */,
+			);
+			path = FoodHub;
+			sourceTree = "<group>";
+		};
+		1B15978825FCBBD400DEC269 /* FoodHubTests */ = {
+			isa = PBXGroup;
+			children = (
+				1B15978925FCBBD400DEC269 /* FoodHubTests.swift */,
+				1B15978B25FCBBD400DEC269 /* Info.plist */,
+			);
+			path = FoodHubTests;
+			sourceTree = "<group>";
+		};
+		1B15979325FCBBD400DEC269 /* FoodHubUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1B15979425FCBBD400DEC269 /* FoodHubUITests.swift */,
+				1B15979625FCBBD400DEC269 /* Info.plist */,
+			);
+			path = FoodHubUITests;
+			sourceTree = "<group>";
+		};
+		1B1597A825FCD24500DEC269 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1B15977625FCBBD300DEC269 /* HomeViewController.swift */,
+				1B1597A925FCD26300DEC269 /* LoginViewController.swift */,
+				1BD1A05225FD13A10025C866 /* ProfileViewController.swift */,
+				1BD1A05725FD13A90025C866 /* CartViewController.swift */,
+				1BD1A05C25FD15E80025C866 /* FoodDetailViewController.swift */,
+				1B2C698226033EAA00F6B40F /* OrderHistoryViewController.swift */,
+				1BAEC4822609DF1A007BFB4C /* PaymentViewController.swift */,
+				1B3FE2A82610631600ED7E58 /* FoodListViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		1B1597AE25FCD9C500DEC269 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1B1597AF25FCD9DC00DEC269 /* MyExtensions.swift */,
+				1BD1A06125FD2E720025C866 /* Constants.swift */,
+				1B9E767325FE1DDD006E1E85 /* SessionManager.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1BD1A04025FCFEB70025C866 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1BD1A04425FD01160025C866 /* FoodCell.swift */,
+				1B2C698C2603433E00F6B40F /* CartCell.swift */,
+				1B2C699126034CCD00F6B40F /* OrderHistoryCell.swift */,
+				1B3FE2AD261063EF00ED7E58 /* RestaurantCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		1BD1A04925FD01F50025C866 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1BD1A04D25FD02020025C866 /* FoodData.swift */,
+				1B9E766125FE0DC4006E1E85 /* CartData.swift */,
+				1B9E766625FE0DDD006E1E85 /* LocalData.swift */,
+				1B9E766B25FE0E26006E1E85 /* UserData.swift */,
+				1B2C698726033F6800F6B40F /* OrderHistoryData.swift */,
+				1B3FE2A326105F0D00ED7E58 /* RestaurantData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1B15976E25FCBBD300DEC269 /* FoodHub */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B15979925FCBBD400DEC269 /* Build configuration list for PBXNativeTarget "FoodHub" */;
+			buildPhases = (
+				1B15976B25FCBBD300DEC269 /* Sources */,
+				1B15976C25FCBBD300DEC269 /* Frameworks */,
+				1B15976D25FCBBD300DEC269 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FoodHub;
+			packageProductDependencies = (
+				1B9E767D25FE686A006E1E85 /* IQKeyboardManagerSwift */,
+			);
+			productName = FoodHub;
+			productReference = 1B15976F25FCBBD300DEC269 /* FoodHub.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1B15978425FCBBD400DEC269 /* FoodHubTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B15979C25FCBBD400DEC269 /* Build configuration list for PBXNativeTarget "FoodHubTests" */;
+			buildPhases = (
+				1B15978125FCBBD400DEC269 /* Sources */,
+				1B15978225FCBBD400DEC269 /* Frameworks */,
+				1B15978325FCBBD400DEC269 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1B15978725FCBBD400DEC269 /* PBXTargetDependency */,
+			);
+			name = FoodHubTests;
+			productName = FoodHubTests;
+			productReference = 1B15978525FCBBD400DEC269 /* FoodHubTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1B15978F25FCBBD400DEC269 /* FoodHubUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B15979F25FCBBD400DEC269 /* Build configuration list for PBXNativeTarget "FoodHubUITests" */;
+			buildPhases = (
+				1B15978C25FCBBD400DEC269 /* Sources */,
+				1B15978D25FCBBD400DEC269 /* Frameworks */,
+				1B15978E25FCBBD400DEC269 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1B15979225FCBBD400DEC269 /* PBXTargetDependency */,
+			);
+			name = FoodHubUITests;
+			productName = FoodHubUITests;
+			productReference = 1B15979025FCBBD400DEC269 /* FoodHubUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1B15976725FCBBD300DEC269 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					1B15976E25FCBBD300DEC269 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					1B15978425FCBBD400DEC269 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 1B15976E25FCBBD300DEC269;
+					};
+					1B15978F25FCBBD400DEC269 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 1B15976E25FCBBD300DEC269;
+					};
+				};
+			};
+			buildConfigurationList = 1B15976A25FCBBD300DEC269 /* Build configuration list for PBXProject "FoodHub" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1B15976625FCBBD300DEC269;
+			packageReferences = (
+				1B9E767C25FE686A006E1E85 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+			);
+			productRefGroup = 1B15977025FCBBD300DEC269 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1B15976E25FCBBD300DEC269 /* FoodHub */,
+				1B15978425FCBBD400DEC269 /* FoodHubTests */,
+				1B15978F25FCBBD400DEC269 /* FoodHubUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1B15976D25FCBBD300DEC269 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B15977F25FCBBD400DEC269 /* LaunchScreen.storyboard in Resources */,
+				1B15977C25FCBBD400DEC269 /* Assets.xcassets in Resources */,
+				1B15977A25FCBBD300DEC269 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B15978325FCBBD400DEC269 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B15978E25FCBBD400DEC269 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1B15976B25FCBBD300DEC269 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B2C699226034CCD00F6B40F /* OrderHistoryCell.swift in Sources */,
+				1B2C698326033EAA00F6B40F /* OrderHistoryViewController.swift in Sources */,
+				1B9E766725FE0DDD006E1E85 /* LocalData.swift in Sources */,
+				1B2C698826033F6800F6B40F /* OrderHistoryData.swift in Sources */,
+				1BD1A04E25FD02020025C866 /* FoodData.swift in Sources */,
+				1BD1A06225FD2E720025C866 /* Constants.swift in Sources */,
+				1B1597AA25FCD26300DEC269 /* LoginViewController.swift in Sources */,
+				1BAEC4832609DF1A007BFB4C /* PaymentViewController.swift in Sources */,
+				1BD1A04525FD01160025C866 /* FoodCell.swift in Sources */,
+				1B2C698D2603433E00F6B40F /* CartCell.swift in Sources */,
+				1BD1A05D25FD15E80025C866 /* FoodDetailViewController.swift in Sources */,
+				1B3FE2AE261063EF00ED7E58 /* RestaurantCell.swift in Sources */,
+				1B9E766C25FE0E26006E1E85 /* UserData.swift in Sources */,
+				1B9E766225FE0DC4006E1E85 /* CartData.swift in Sources */,
+				1B9E767425FE1DDD006E1E85 /* SessionManager.swift in Sources */,
+				1B3FE2A92610631600ED7E58 /* FoodListViewController.swift in Sources */,
+				1B15977725FCBBD300DEC269 /* HomeViewController.swift in Sources */,
+				1B1597B025FCD9DC00DEC269 /* MyExtensions.swift in Sources */,
+				1B15977325FCBBD300DEC269 /* AppDelegate.swift in Sources */,
+				1BD1A05325FD13A10025C866 /* ProfileViewController.swift in Sources */,
+				1BD1A05825FD13A90025C866 /* CartViewController.swift in Sources */,
+				1B15977525FCBBD300DEC269 /* SceneDelegate.swift in Sources */,
+				1B3FE2A426105F0D00ED7E58 /* RestaurantData.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B15978125FCBBD400DEC269 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B15978A25FCBBD400DEC269 /* FoodHubTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B15978C25FCBBD400DEC269 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B15979525FCBBD400DEC269 /* FoodHubUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1B15978725FCBBD400DEC269 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B15976E25FCBBD300DEC269 /* FoodHub */;
+			targetProxy = 1B15978625FCBBD400DEC269 /* PBXContainerItemProxy */;
+		};
+		1B15979225FCBBD400DEC269 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B15976E25FCBBD300DEC269 /* FoodHub */;
+			targetProxy = 1B15979125FCBBD400DEC269 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1B15977825FCBBD300DEC269 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B15977925FCBBD300DEC269 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1B15977D25FCBBD400DEC269 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B15977E25FCBBD400DEC269 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1B15979725FCBBD400DEC269 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1B15979825FCBBD400DEC269 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1B15979A25FCBBD400DEC269 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7RJK2X3QD9;
+				INFOPLIST_FILE = FoodHub/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.FoodHub;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1B15979B25FCBBD400DEC269 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7RJK2X3QD9;
+				INFOPLIST_FILE = FoodHub/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.FoodHub;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1B15979D25FCBBD400DEC269 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7RJK2X3QD9;
+				INFOPLIST_FILE = FoodHubTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.FoodHubTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoodHub.app/FoodHub";
+			};
+			name = Debug;
+		};
+		1B15979E25FCBBD400DEC269 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7RJK2X3QD9;
+				INFOPLIST_FILE = FoodHubTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.FoodHubTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoodHub.app/FoodHub";
+			};
+			name = Release;
+		};
+		1B1597A025FCBBD400DEC269 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7RJK2X3QD9;
+				INFOPLIST_FILE = FoodHubUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.FoodHubUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FoodHub;
+			};
+			name = Debug;
+		};
+		1B1597A125FCBBD400DEC269 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7RJK2X3QD9;
+				INFOPLIST_FILE = FoodHubUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.FoodHubUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FoodHub;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1B15976A25FCBBD300DEC269 /* Build configuration list for PBXProject "FoodHub" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B15979725FCBBD400DEC269 /* Debug */,
+				1B15979825FCBBD400DEC269 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B15979925FCBBD400DEC269 /* Build configuration list for PBXNativeTarget "FoodHub" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B15979A25FCBBD400DEC269 /* Debug */,
+				1B15979B25FCBBD400DEC269 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B15979C25FCBBD400DEC269 /* Build configuration list for PBXNativeTarget "FoodHubTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B15979D25FCBBD400DEC269 /* Debug */,
+				1B15979E25FCBBD400DEC269 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B15979F25FCBBD400DEC269 /* Build configuration list for PBXNativeTarget "FoodHubUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B1597A025FCBBD400DEC269 /* Debug */,
+				1B1597A125FCBBD400DEC269 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1B9E767C25FE686A006E1E85 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1B9E767D25FE686A006E1E85 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B9E767C25FE686A006E1E85 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 1B15976725FCBBD300DEC269 /* Project object */;
+}
