@@ -8,6 +8,8 @@
 import Foundation
 
 class FoodData: Codable{
+    var uid: String
+    var resUid: String
     var img: String
     var name: String
     var calories: String
@@ -17,7 +19,9 @@ class FoodData: Codable{
     var date: String = ""
     var restaurant = ""
     
-    init(img: String, name: String, calories: String, price: Double, detail: String) {
+    init(uid: String,resUid: String, img: String, name: String, calories: String, price: Double, detail: String) {
+        self.uid = uid
+        self.resUid = resUid
         self.img = img
         self.name = name
         self.calories = calories

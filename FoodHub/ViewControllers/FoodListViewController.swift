@@ -6,14 +6,18 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class FoodListViewController: UIViewController {
     
     @IBOutlet weak var heading: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    var list: [FoodData] = Constants.foodList
+    var list: [FoodData] = []
+//    Constants.foodList
     var restaurantName = ""
+    var resUid = ""
+    let foodListCollection = Firestore.firestore().collection("foodList")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +29,20 @@ class FoodListViewController: UIViewController {
         self.heading.text = restaurantName
         tableView.dataSource = self
         tableView.delegate = self
+        getFoodList()
+    }
+    
+    func getFoodList(){
+        foodListCollection.document(resUid).collection("foodItems").addSnapshotListener { documentSnapshot, err in
+            
+            guard let docSnapshot = documentSnapshot?.documents else{return}
+            
+            self.list = docSnapshot.compactMap { (queryDoc) -> FoodData in
+                let data = queryDoc.data()
+                return FoodData(uid: queryDoc.documentID, resUid: self.resUid, img: data["img"] as? String ?? "", name: data["name"] as? String ?? "", calories: data["calories"] as? String ?? "", price: data["price"] as? Double ?? 0.1, detail: data["detail"] as? String ?? "")
+            }
+            self.tableView.reloadData()
+        }
     }
     
     //MARK:- Actions

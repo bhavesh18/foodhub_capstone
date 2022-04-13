@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class LoginViewController: UIViewController {
 
@@ -30,6 +32,7 @@ class LoginViewController: UIViewController {
     
     //MARK:- variables
     var selectedSegment = 0
+    let database = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,9 +43,14 @@ class LoginViewController: UIViewController {
     //checking if user already logged in then moving to homescreen.
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if(SessionManager.i.localData.isLoggedIn){
+        
+        if(Auth.auth().currentUser != nil){
             goToHomeScreen()
         }
+        
+//        if(SessionManager.i.localData.isLoggedIn){
+//            goToHomeScreen()
+//        }
     }
     
     //when view disappear we reset our UI
@@ -152,6 +160,18 @@ class LoginViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    
+    func writeUserData(userData: UserData){
+//        let docRef =
+        database.document("/users/" + userData.uid).setData([
+            "name" : userData.name,
+            "email": userData.email,
+            "uid": userData.uid,
+            "phone": userData.phone,
+            "password": userData.password,
+            ])
+    }
+    
     //MARK:- IBActions
     
     @IBAction func onSegmentTap(_ sender: UISegmentedControl) {
@@ -179,21 +199,48 @@ class LoginViewController: UIViewController {
             }
         }else{
             //signup
-            if(isValidEntry() && localData.users.contains(where: ({$0.email.lowercased() == self.emailTF.text!.lowercased()}))){
-                showAlert(msg: "Email already exists.")
-            }else{
-                if(isValidEntry()){
-                    let userData = UserData()
-                    userData.name = self.nameTF.text!
-                    userData.email = self.emailTF.text!
-                    userData.phone = self.phoneTF.text!
-                    userData.password = self.passwordTF.text!
-                    userData.orderHistory = []
-                    localData.users.append(userData)
-                    localData.currentUser = userData
-                    goToHomeScreen()
+            if(isValidEntry()){
+                AuthManager.shared.createUser(email: emailTF.text!, password: passwordTF.text!) { [weak self] success, res in
+                    
+                    guard let ss = self else{return}
+                    
+                    if(success){
+                        if let usr = res as? User{
+                            print(usr.uid)
+                            let userData = UserData()
+                            userData.uid = usr.uid
+                            userData.name = ss.nameTF.text!
+                            userData.email = ss.emailTF.text!
+                            userData.phone = ss.phoneTF.text!
+                            userData.password = ss.passwordTF.text!
+                            localData.currentUser = userData
+                            ss.writeUserData(userData: userData)
+                            ss.goToHomeScreen()
+                        }
+                    }else{
+                        if let result = res as? String{
+                            ss.showAlert(msg: result)
+                        }
+                    }
+                    
                 }
             }
+            
+//            if(isValidEntry() && localData.users.contains(where: ({$0.email.lowercased() == self.emailTF.text!.lowercased()}))){
+//                showAlert(msg: "Email already exists.")
+//            }else{
+//                if(isValidEntry()){
+//                    let userData = UserData()
+//                    userData.name = self.nameTF.text!
+//                    userData.email = self.emailTF.text!
+//                    userData.phone = self.phoneTF.text!
+//                    userData.password = self.passwordTF.text!
+//                    userData.orderHistory = []
+//                    localData.users.append(userData)
+//                    localData.currentUser = userData
+//                    goToHomeScreen()
+//                }
+//            }
         }
         
     }
@@ -201,5 +248,9 @@ class LoginViewController: UIViewController {
     @IBAction func onForgotPasswordTap(_ sender: UIButton) {
         showInputAlert()
     }
+    
+    
+    
+    
     
 }
