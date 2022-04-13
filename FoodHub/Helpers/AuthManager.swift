@@ -34,12 +34,19 @@ class AuthManager {
     }
     
     
-    func signIn(email: String, password: String){
+    func signIn(email: String, password: String, completion: @escaping (Bool, Any?)->()){
         
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-            guard let strongSelf = self else { return }
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+//            guard let strongSelf = self else { return }
 
-            
+            guard error == nil else {
+                print(error?.localizedDescription ?? "firebase login error")
+                completion(false, error?.localizedDescription)
+                return
+            }
+            let usr = authResult?.user
+            completion(true, usr)
+            print("User logged in!!!")
 
         }
         

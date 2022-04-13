@@ -24,16 +24,31 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B8V-Q5-PUj">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="35w-sO-48A">
-                                                <rect key="frame" x="122.5" y="323.5" width="169" height="71"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bike" translatesAutoresizingMaskIntoConstraints="NO" id="35w-sO-48A">
+                                                <rect key="frame" x="80" y="209" width="254" height="300"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="300" id="ilc-4q-WB9"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="6Mf-G8-djv">
+                                                <rect key="frame" x="20" y="529" width="374" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="wj1-8j-Mhq"/>
+                                                </constraints>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                         <constraints>
+                                            <constraint firstItem="6Mf-G8-djv" firstAttribute="leading" secondItem="B8V-Q5-PUj" secondAttribute="leading" constant="20" id="6Z3-dd-biu"/>
                                             <constraint firstItem="35w-sO-48A" firstAttribute="centerX" secondItem="B8V-Q5-PUj" secondAttribute="centerX" id="BFv-Yy-cXT"/>
+                                            <constraint firstItem="35w-sO-48A" firstAttribute="leading" secondItem="B8V-Q5-PUj" secondAttribute="leading" constant="80" id="E66-Sz-SUl"/>
+                                            <constraint firstItem="6Mf-G8-djv" firstAttribute="top" secondItem="35w-sO-48A" secondAttribute="bottom" constant="20" id="PWX-5i-Hqx"/>
                                             <constraint firstItem="35w-sO-48A" firstAttribute="centerY" secondItem="B8V-Q5-PUj" secondAttribute="centerY" constant="-50" id="cYB-Mo-07w"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6Mf-G8-djv" secondAttribute="bottom" constant="20" id="iw5-Uh-zof"/>
                                             <constraint firstItem="35w-sO-48A" firstAttribute="centerX" secondItem="B8V-Q5-PUj" secondAttribute="centerX" id="ixt-Wc-xKd"/>
+                                            <constraint firstAttribute="trailing" secondItem="35w-sO-48A" secondAttribute="trailing" constant="80" id="wWl-v5-Dpw"/>
+                                            <constraint firstAttribute="trailing" secondItem="6Mf-G8-djv" secondAttribute="trailing" constant="20" id="xcG-Nb-mFj"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -57,6 +72,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bike" width="512" height="512"/>
         <image name="logo" width="169" height="71"/>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

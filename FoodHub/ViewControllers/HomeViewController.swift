@@ -15,21 +15,37 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var cartBadge: UILabel!
     
+    var cartCount = 0
+    
     let restaurantCollection = Firestore.firestore().collection("restaurants")
     
     //MARK:- Variables
-    var list: [RestaurantData] = [] {
+    var list: [RestaurantData] = []
+        
+    var filteredList: [RestaurantData] = [] {
         didSet{
             self.tableView.reloadData()
         }
     }
-    //    Constants.resaturantList
+    
+    enum Category: String{
+        case outlet = "outlet"
+        case homeCooked = "homeCooked"
+        case tiffin = "tiffin"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         SessionManager.i.localData.isLoggedIn = true
         SessionManager.i.save()
-        setupView()
+        
+        Firestore.firestore().collection("cart").getDocuments { q, err in
+            guard let docs = q?.documents else {return}
+            if(!docs.isEmpty){
+                self.setupView()
+            }
+        }
+        
     }
     
     func setupView(){
@@ -45,9 +61,20 @@ class HomeViewController: UIViewController {
                 let resUid = queryDocument.documentID
                 print("restaurants docID", queryDocument.documentID)
                 
-                let resData = RestaurantData(uid: resUid, img: data["img"] as? String ?? "", name: data["name"] as? String ?? "", rating: data["rating"] as? String ?? "", dishes: data["dishes"] as? String ?? "", foodList: [])
+                let resData = RestaurantData(uid: resUid, img: data["img"] as? String ?? "dish", name: data["name"] as? String ?? "", rating: data["rating"] as? String ?? "", dishes: data["dishes"] as? String ?? "", category: data["category"] as? String ?? "", foodList: [])
                 return resData
             })
+            
+            self.updateRestaurantsWithCategory(category: .outlet)
+            
+        }
+        
+        Firestore.firestore().collection("cart").document(SessionManager.i.localData.currentUser.uid).collection("foodItems").addSnapshotListener { snap, err in
+            
+            guard let snap = snap?.documents else{return}
+            print("CART COUNT-> ", snap.count)
+            self.cartCount = snap.count
+            self.handleCartBadge()
             
         }
         
@@ -57,14 +84,21 @@ class HomeViewController: UIViewController {
         
     }
     
+    func updateRestaurantsWithCategory(category: Category){
+        
+        self.filteredList = self.list.filter {$0.category == category.rawValue}
+        
+    }
     
     func handleCartBadge(){
-        if(SessionManager.i.localData.cartList.count == 0){
+//        if(SessionManager.i.localData.cartList.count == 0){
+        if(cartCount == 0){
             cartBadge.isHidden = true
             cartBadge.text = ""
         }else{
             cartBadge.isHidden = false
-            cartBadge.text = "\(SessionManager.i.localData.cartList.count)"
+//            cartBadge.text = "\(SessionManager.i.localData.cartList.count)"
+            cartBadge.text = "\(self.cartCount)"
         }
         
     }
@@ -76,6 +110,20 @@ class HomeViewController: UIViewController {
     }
     
     //MARK:- IBActions
+    
+    @IBAction func onSegmentChange(_ sender: UISegmentedControl) {
+        if(sender.selectedSegmentIndex == 0){
+            //outlets
+            updateRestaurantsWithCategory(category: .outlet)
+        }else if(sender.selectedSegmentIndex == 1){
+            //home cooked
+            updateRestaurantsWithCategory(category: .homeCooked)
+        }else{
+            //tiffin
+            updateRestaurantsWithCategory(category: .tiffin)
+        }
+    }
+    
     
     @IBAction func onProfileTap(_ sender: UIButton) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
@@ -99,17 +147,17 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        list.count
+        filteredList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell", for: indexPath) as! RestaurantCell
-        cell.configure(data: list[indexPath.row])
+        cell.configure(data: filteredList[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let rowData = list[indexPath.row]
+        let rowData = filteredList[indexPath.row]
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "FoodListViewController") as! FoodListViewController
         vc.modalPresentationStyle = .fullScreen
         vc.list = rowData.foodList

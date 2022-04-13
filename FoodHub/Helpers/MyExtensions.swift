@@ -8,7 +8,7 @@
 import UIKit
 
 extension UISegmentedControl {
-
+    
     func setTitleColor(_ color: UIColor, state: UIControl.State = .normal) {
         var attributes = self.titleTextAttributes(for: state) ?? [:]
         attributes[.foregroundColor] = color
@@ -28,6 +28,14 @@ extension Encodable{
         }catch{ }
         return nil
     }
+    
+    
+    var dict : [String: Any]? {
+        guard let data = try? JSONEncoder().encode(self) else { return nil }
+        guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] else { return nil }
+        return json
+    }
+    
 }
 
 extension String{
@@ -44,10 +52,10 @@ extension String{
     }
     
     func isValidEmail() -> Bool {
-            // here, `try!` will always succeed because the pattern is valid
-            let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
-            return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
-        }
+        // here, `try!` will always succeed because the pattern is valid
+        let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
+        return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
+    }
     
     func safelyLimitedTo(length n: Int)->String {
         if (self.count <= n) {
@@ -55,12 +63,12 @@ extension String{
         }
         return String( Array(self).prefix(upTo: n) )
     }
-
+    
     
 }
 
 extension UIView{
-
+    
     @IBInspectable var cornerRadius: CGFloat {
         get{
             return layer.cornerRadius
@@ -91,14 +99,14 @@ extension UIView{
     
     func shake(duration: TimeInterval = 0.5, values: [CGFloat] = [-12.0, 12.0, -12.0, 12.0, -6.0, 6.0, -3.0, 3.0, 0.0]) {
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
-
+        
         // Swift 4.2 and above
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-
+        
         // Swift 4.1 and below
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-
-
+        
+        
         animation.duration = duration // You can set fix duration
         animation.values = values  // You can set fix values here also
         self.layer.add(animation, forKey: "shake")
@@ -109,16 +117,16 @@ extension UIView{
 extension UIViewController{
     func showAlert(msg: String, handler: (()->())? = nil){
         let alert = UIAlertController(title: msg, message: "", preferredStyle: UIAlertController.Style.alert)
-
-                // add an action (button)
+        
+        // add an action (button)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default,handler: { (action) in
             handler?()
         }))
-
-                // show the alert
-                self.present(alert, animated: true, completion: nil)
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
-
+    
     func hideKeyboard(){
         self.view.endEditing(true)
     }
@@ -146,7 +154,7 @@ extension UITextField {
         }
     }
     
-     @objc func fix(textField: UITextField) {
+    @objc func fix(textField: UITextField) {
         let t = textField.text
         textField.text = t?.safelyLimitedTo(length: maxLength)
     }

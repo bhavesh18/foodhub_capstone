@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class LoginViewController: UIViewController {
-
+    
     //MARK:- Imageview and segment
     @IBOutlet weak var wallpaperIV: UIImageView!
     @IBOutlet weak var segment: UISegmentedControl!
@@ -21,11 +21,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var phoneTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var confPasswordTF: UITextField!
+    @IBOutlet weak var addressTF: UITextField!
     
     //MARK:- Stackview
     @IBOutlet weak var nameStackView: UIStackView!
     @IBOutlet weak var phoneStackView: UIStackView!
     @IBOutlet weak var confPassStackView: UIStackView!
+    @IBOutlet weak var addressStackView: UIStackView!
     
     //MARK:- Button
     @IBOutlet weak var loginBtn: UIButton!
@@ -39,7 +41,7 @@ class LoginViewController: UIViewController {
         //print(SessionManager.i.localData.users.getJsonString())
         setupView()
     }
-
+    
     //checking if user already logged in then moving to homescreen.
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -48,9 +50,9 @@ class LoginViewController: UIViewController {
             goToHomeScreen()
         }
         
-//        if(SessionManager.i.localData.isLoggedIn){
-//            goToHomeScreen()
-//        }
+        //        if(SessionManager.i.localData.isLoggedIn){
+        //            goToHomeScreen()
+        //        }
     }
     
     //when view disappear we reset our UI
@@ -69,9 +71,10 @@ class LoginViewController: UIViewController {
         segment.setTitleColor(.white, state: .selected)
         nameStackView.isHidden = true
         phoneStackView.isHidden = true
+        addressStackView.isHidden = true
         loginBtn.layer.cornerRadius = 12
     }
-
+    
     //resetting data to default state
     func resetData(){
         hideKeyboard()
@@ -127,6 +130,9 @@ class LoginViewController: UIViewController {
             }else if(passwordTF.text != confPasswordTF.text){
                 showAlert(msg: "Password does not match")
                 return false
+            }else if(addressTF.text == ""){
+                showAlert(msg: "Address is empty")
+                return false
             }
         }
         return true
@@ -162,14 +168,15 @@ class LoginViewController: UIViewController {
     
     
     func writeUserData(userData: UserData){
-//        let docRef =
+        //        let docRef =
         database.document("/users/" + userData.uid).setData([
             "name" : userData.name,
             "email": userData.email,
             "uid": userData.uid,
             "phone": userData.phone,
             "password": userData.password,
-            ])
+            "address": userData.address
+        ])
     }
     
     //MARK:- IBActions
@@ -180,6 +187,7 @@ class LoginViewController: UIViewController {
         confPassStackView.isHidden = sender.selectedSegmentIndex == 0
         nameStackView.isHidden = sender.selectedSegmentIndex == 0
         phoneStackView.isHidden = sender.selectedSegmentIndex == 0
+        addressStackView.isHidden = sender.selectedSegmentIndex == 0
         loginBtn.setTitle(sender.selectedSegmentIndex == 0 ? "Login" : "Sign up", for: .normal)
     }
     
@@ -188,15 +196,47 @@ class LoginViewController: UIViewController {
         let localData = SessionManager.i.localData
         if(self.selectedSegment == 0){
             //login
-            if(isValidEntry() && localData.users.contains(where: ({$0.email == self.emailTF.text! && $0.password == self.passwordTF.text!}))){
-                let matchedUser = localData.users.first(where: ({$0.email == emailTF.text!}))!
-                matchedUser.email = emailTF.text!
-                matchedUser.password = passwordTF.text!
-                localData.currentUser = matchedUser
-                goToHomeScreen()
-            }else{
-                showAlert(msg: "Invalid Email or password.")
+            
+            AuthManager.shared.signIn(email: emailTF.text!, password: passwordTF.text!) { [weak self] success, res in
+                
+                guard let ss = self else{return}
+                
+                if(success){
+                    if let usr = res as? User{
+                        print(usr.uid)
+                        
+                        let usersCollection = Firestore.firestore().collection("users")
+                        usersCollection.document(usr.uid).getDocument { snapshot, err in
+                            guard let snapshot = snapshot else {return}
+                            guard let data = snapshot.data() else{return}
+                            let userData = UserData()
+                            userData.uid = usr.uid
+                            userData.name = data["name"] as? String ?? ""
+                            userData.email = ss.emailTF.text!
+                            userData.phone = data["phone"] as? String ?? ""
+                            userData.address = data["address"] as? String ?? ""
+                            userData.password = ss.passwordTF.text!
+                            localData.currentUser = userData
+                            ss.goToHomeScreen()
+                        }
+                        
+                    }
+                }else{
+                    if let result = res as? String{
+                        ss.showAlert(msg: result)
+                    }
+                }
             }
+            
+            //            if(isValidEntry() && localData.users.contains(where: ({$0.email == self.emailTF.text! && $0.password == self.passwordTF.text!}))){
+            //                let matchedUser = localData.users.first(where: ({$0.email == emailTF.text!}))!
+            //                matchedUser.email = emailTF.text!
+            //                matchedUser.password = passwordTF.text!
+            //                localData.currentUser = matchedUser
+            //                goToHomeScreen()
+            //            }else{
+            //                showAlert(msg: "Invalid Email or password.")
+            //            }
         }else{
             //signup
             if(isValidEntry()){
@@ -213,6 +253,7 @@ class LoginViewController: UIViewController {
                             userData.email = ss.emailTF.text!
                             userData.phone = ss.phoneTF.text!
                             userData.password = ss.passwordTF.text!
+                            userData.address = ss.addressTF.text!
                             localData.currentUser = userData
                             ss.writeUserData(userData: userData)
                             ss.goToHomeScreen()
@@ -226,21 +267,21 @@ class LoginViewController: UIViewController {
                 }
             }
             
-//            if(isValidEntry() && localData.users.contains(where: ({$0.email.lowercased() == self.emailTF.text!.lowercased()}))){
-//                showAlert(msg: "Email already exists.")
-//            }else{
-//                if(isValidEntry()){
-//                    let userData = UserData()
-//                    userData.name = self.nameTF.text!
-//                    userData.email = self.emailTF.text!
-//                    userData.phone = self.phoneTF.text!
-//                    userData.password = self.passwordTF.text!
-//                    userData.orderHistory = []
-//                    localData.users.append(userData)
-//                    localData.currentUser = userData
-//                    goToHomeScreen()
-//                }
-//            }
+            //            if(isValidEntry() && localData.users.contains(where: ({$0.email.lowercased() == self.emailTF.text!.lowercased()}))){
+            //                showAlert(msg: "Email already exists.")
+            //            }else{
+            //                if(isValidEntry()){
+            //                    let userData = UserData()
+            //                    userData.name = self.nameTF.text!
+            //                    userData.email = self.emailTF.text!
+            //                    userData.phone = self.phoneTF.text!
+            //                    userData.password = self.passwordTF.text!
+            //                    userData.orderHistory = []
+            //                    localData.users.append(userData)
+            //                    localData.currentUser = userData
+            //                    goToHomeScreen()
+            //                }
+            //            }
         }
         
     }

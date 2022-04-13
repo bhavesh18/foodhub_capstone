@@ -70,6 +70,7 @@ class ProfileViewController: UIViewController {
     @IBAction func logout(_ sender: UIButton) {
         SessionManager.i.localData.isLoggedIn = false
         SessionManager.i.save()
+        AuthManager.shared.signOut()
         self.view.window!.rootViewController?.dismiss(animated: true)
     }
     

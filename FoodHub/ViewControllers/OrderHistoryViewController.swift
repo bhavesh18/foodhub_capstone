@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class OrderHistoryViewController: UIViewController {
     //MARK:- Tableview
@@ -14,13 +15,36 @@ class OrderHistoryViewController: UIViewController {
     @IBOutlet weak var noOrderLabel: UILabel!
     
     //MARK:- variable
-    let orderList = SessionManager.i.localData.currentUser.orderHistory
+    var orderList:[FoodData] = []
+//    SessionManager.i.localData.currentUser.orderHistory
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
-        if(!orderList.isEmpty){
-            noOrderLabel.removeFromSuperview()
+        
+        fetchOrderHistory()
+    }
+    
+    func fetchOrderHistory(){
+        Firestore.firestore().collection("orderHistory").document(SessionManager.i.localData.currentUser.uid).collection("orderHistory").getDocuments { query, err in
+            guard let query = query?.documents else{return}
+            self.orderList = query.compactMap({ (querySnap) -> FoodData in
+                let data = querySnap.data()
+                
+                let foodData = FoodData(uid: data["uid"] as? String ?? "", resUid: data["resUid"] as? String ?? "", img: data["img"] as? String ?? "", name: data["name"] as? String ?? "", calories: data["calories"] as? String ?? "", price: data["price"] as? Double ?? 0.1, detail: data["detail"] as? String ?? "")
+                
+                foodData.date = data["date"] as? String ?? ""
+                foodData.quantity = data["quantity"] as? Int ?? 1
+                foodData.restaurant = data["restaurant"] as? String ?? ""
+                
+                return foodData
+            })
+            
+            if(!self.orderList.isEmpty){
+                self.noOrderLabel.removeFromSuperview()
+            }
+            
+            self.tableView.reloadData()
         }
     }
     

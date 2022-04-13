@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class FoodDetailViewController: UIViewController {
     //MARK:- Outlets
@@ -25,6 +26,7 @@ class FoodDetailViewController: UIViewController {
     var totalAmount: Double = 0
     
     var shakeOnce = true
+    let localData = SessionManager.i.localData
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,8 +68,24 @@ class FoodDetailViewController: UIViewController {
         guard let fd = foodData else{return}
         fd.quantity = totalQuantity
         fd.restaurant = restaurantName
+        
+        let uid = localData.currentUser.uid
+        let collection = Firestore.firestore().collection("cart")
+        let dic = [
+            "uid": fd.uid,
+            "resUid": fd.resUid,
+            "quantity": fd.quantity,
+            "restaurant": fd.restaurant,
+            "name": fd.name,
+            "price": fd.price,
+            "img": fd.img
+        ] as [String : Any]
+        
+        collection.document(uid).collection("foodItems").addDocument(data: dic)
+        
         SessionManager.i.localData.cartList.append(fd)
         SessionManager.i.save()
+        
         showAlert(msg: "Added to cart!") {
             self.dismiss(animated: true)
         }
