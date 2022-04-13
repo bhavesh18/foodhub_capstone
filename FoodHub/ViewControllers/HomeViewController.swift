@@ -44,7 +44,6 @@ class HomeViewController: UIViewController {
                 let data = queryDocument.data()
                 let resUid = queryDocument.documentID
                 print("restaurants docID", queryDocument.documentID)
-                print("Current data: \(data)")
                 
                 let resData = RestaurantData(uid: resUid, img: data["img"] as? String ?? "", name: data["name"] as? String ?? "", rating: data["rating"] as? String ?? "", dishes: data["dishes"] as? String ?? "", foodList: [])
                 return resData
