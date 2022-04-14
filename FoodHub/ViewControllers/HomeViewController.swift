@@ -21,7 +21,7 @@ class HomeViewController: UIViewController {
     
     //MARK:- Variables
     var list: [RestaurantData] = []
-        
+    
     var filteredList: [RestaurantData] = [] {
         didSet{
             self.tableView.reloadData()
@@ -39,12 +39,7 @@ class HomeViewController: UIViewController {
         SessionManager.i.localData.isLoggedIn = true
         SessionManager.i.save()
         
-        Firestore.firestore().collection("cart").getDocuments { q, err in
-            guard let docs = q?.documents else {return}
-            if(!docs.isEmpty){
-                self.setupView()
-            }
-        }
+        self.setupView()
         
     }
     
@@ -55,7 +50,7 @@ class HomeViewController: UIViewController {
                 print("Error fetching document: \(err!)")
                 return
             }
-                        
+            
             self.list = document.compactMap({ (queryDocument) -> RestaurantData in
                 let data = queryDocument.data()
                 let resUid = queryDocument.documentID
@@ -69,14 +64,22 @@ class HomeViewController: UIViewController {
             
         }
         
-        Firestore.firestore().collection("cart").document(SessionManager.i.localData.currentUser.uid).collection("foodItems").addSnapshotListener { snap, err in
-            
-            guard let snap = snap?.documents else{return}
-            print("CART COUNT-> ", snap.count)
-            self.cartCount = snap.count
-            self.handleCartBadge()
-            
+        Firestore.firestore().collection("cart").getDocuments { q, err in
+            guard let docs = q?.documents else {return}
+            if(!docs.isEmpty){
+                
+                Firestore.firestore().collection("cart").document(SessionManager.i.localData.currentUser.uid).collection("foodItems").addSnapshotListener { snap, err in
+                    
+                    guard let snap = snap?.documents else{return}
+                    print("CART COUNT-> ", snap.count)
+                    self.cartCount = snap.count
+                    self.handleCartBadge()
+                    
+                }
+            }
         }
+        
+        
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -91,13 +94,13 @@ class HomeViewController: UIViewController {
     }
     
     func handleCartBadge(){
-//        if(SessionManager.i.localData.cartList.count == 0){
+        //        if(SessionManager.i.localData.cartList.count == 0){
         if(cartCount == 0){
             cartBadge.isHidden = true
             cartBadge.text = ""
         }else{
             cartBadge.isHidden = false
-//            cartBadge.text = "\(SessionManager.i.localData.cartList.count)"
+            //            cartBadge.text = "\(SessionManager.i.localData.cartList.count)"
             cartBadge.text = "\(self.cartCount)"
         }
         
