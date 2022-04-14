@@ -71,6 +71,7 @@ class CartViewController: UIViewController {
                 collection.document(SessionManager.i.localData.currentUser.uid).collection("orderHistory").addDocument(data: [
                     "date": f.date,
                     "name": f.name,
+                    "img": f.img,
                     "price": f.price,
                     "quantity": f.quantity,
                     "restaurant": f.restaurant
